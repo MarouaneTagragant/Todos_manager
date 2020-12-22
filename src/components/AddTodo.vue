@@ -3,7 +3,7 @@
         <h3>Add Todo</h3>
         <div class="add">
         <form @submit="onSubmit">
-            <input type="text" v-model="title" placeholder="Add Todo...">
+            <input type="text" v-model="form.title" placeholder="Add Todo...">
             <input type="submit" value="Submit">
         </form>
         </div>
@@ -16,14 +16,23 @@ export default {
   name: "AddTodo",
   data() {
     return {
-      title: ""
-    };
+      form:{
+            title: "",
+            completed : false,
+            userId : 1
+        }
+    }
   },
   methods: {
     ...mapActions(["addTodo"]),
     onSubmit(e) {
       e.preventDefault();
-      this.addTodo(this.title);
+      let form = new FormData();
+
+      form.append('title',this.title)
+      form.append('completed',this.completed)
+
+      this.addTodo(this.form);
     }
   }
 };

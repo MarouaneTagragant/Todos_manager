@@ -14,10 +14,9 @@ const actions = {
         const res = await axios.get('https://jsonplaceholder.typicode.com/todos')
         commit('setTodos' , res.data)
     },
-    async addTodo({ commit }, title) {
+    async addTodo({ commit }, form) {
         const response = await axios.post(
-          'https://jsonplaceholder.typicode.com/todos',
-          { title, completed: false }
+          'https://jsonplaceholder.typicode.com/todos',form
         );
     
         commit('newTodo', response.data);
@@ -26,7 +25,8 @@ const actions = {
 
 const mutations = {
     setTodos : (state,todos) => (state.todos = todos),
-    newTodo  : (state,todo)  => state.todos.unshift(todo)
+    //newTodo  : (state,todo)  => state.todos.unshift(todo)
+    newTodo : (state,todo) => state.todos = [todo,...state.todos]
 }
 
 export default {
