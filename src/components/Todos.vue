@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>im in Todos</h1>
+        <h1>ALL Todos</h1>
         <div class="todos">
             <div class="todo" v-for="todo in getAllTodos" :key="todo.id">
                 {{ todo.title }}
